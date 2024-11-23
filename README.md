@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # CodeIgniter 4 Application Starter
 
 ## What is CodeIgniter?
@@ -70,3 +71,6 @@ Additionally, make sure that the following extensions are enabled in your PHP:
 =======
 # gestion_des_etudiants
 >>>>>>> 3f6c607de56572132898966e4777aa2940568311
+=======
+# gestion_des_etudiants
+>>>>>>> 9e692480a1ad0146e580e78337b8fb91ead5db11
