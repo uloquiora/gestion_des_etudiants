@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Include external head content -->
     <title>Login - Vali Admin</title>
-    <link rel="stylesheet" href="/css/main.css"> <!-- Include your CSS -->
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
     <section class="material-half-bg">
@@ -16,14 +15,14 @@
         </div>
 
         <div class="login-box">
-            <!-- Login Form -->
+ 
             <form class="login-form" action="/login/authenticate" method="post">
                 <h3 class="login-head">
                     <i class="bi bi-person me-2"></i>
                     SIGN IN
                 </h3>
 
-                <!-- Flash Message for Error -->
+              
                 <?php if (session()->getFlashdata('error')): ?>
                     <div class="alert alert-danger">
                         <?= session()->getFlashdata('error') ?>
@@ -60,7 +59,7 @@
                 </div>
             </form>
 
-            <!-- Forgot Password Form (Optional, you can toggle it later) -->
+      
             <form class="forget-form" action="index.html">
                 <h3 class="login-head">
                     <i class="bi bi-person-lock me-2"></i>
@@ -85,9 +84,9 @@
         </div>
     </section>
 
-    <!-- Include external JavaScript -->
+
     <script type="text/javascript">
-        // Login Page Flipbox control
+    
         document.querySelectorAll('.login-content [data-toggle="flip"]').forEach(function (el) {
             el.addEventListener('click', function () {
                 document.querySelector('.login-box').classList.toggle('flipped');

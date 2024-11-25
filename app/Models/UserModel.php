@@ -6,5 +6,5 @@ class UserModel extends Model
 {
     protected $table = 'users';  // Ensure this matches your table name
     protected $primaryKey = 'id';  // Primary key field
-    protected $allowedFields = ['username', 'password', 'role', 'first_name', 'last_name', 'email'];  // Fields that can be inserted/updated
+    protected $allowedFields = ['username', 'password', 'role', 'first_name', 'last_name', 'email', 'class'];  // Fields that can be inserted/updated
 }
