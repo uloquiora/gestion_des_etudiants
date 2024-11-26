@@ -13,48 +13,49 @@ class loginController extends BaseController
     }
 
     public function authenticate()
-    {
-        // Start session
-        $session = session();
+{
+    // Start session
+    $session = session();
 
-        // Get input data
-        $username = $this->request->getPost('username');
-        $password = $this->request->getPost('password');
+    // Get input data
+    $username = $this->request->getPost('username');
+    $password = $this->request->getPost('password');
 
-        // Load UserModel
-        $userModel = new UserModel();
+    // Load UserModel
+    $userModel = new UserModel();
 
-        // Check if user exists
-        $user = $userModel->where('username', $username)->first();
+    // Check if user exists
+    $user = $userModel->where('username', $username)->first();
 
-        if ($user) {
-            // Verify password
-            if (password_verify($password, $user['password'])) {
-                // Set session data
-                $session->set('user', [
-                    'user_id'   => $user['id'],
-                    'username'  => $user['username'],
-                    'role'      => $user['role'],
-                    'logged_in' => true,
-                ]);
+    if ($user) {
+        // Verify password
+        if (password_verify($password, $user['password'])) {
+            // Set session data
+            $session->set('user', [
+                'user_id'   => $user['id'],
+                'username'  => $user['username'],
+                'role'      => $user['role'],
+                'logged_in' => true,
+            ]);
 
-                // Redirect based on role
-                if ($user['role'] === 'admin') {
-                    return redirect()->to('/admin/dashboard');
-                } elseif ($user['role'] === 'teacher') {
-                    return redirect()->to('/teacher/dashboard');
-                } else {
-                    return redirect()->to('/student/dashboard');
-                }
+            // Redirect based on role
+            if ($user['role'] === 'admin') {
+                return redirect()->to('/admin/dashboard');
+            } elseif ($user['role'] === 'teacher') {
+                return redirect()->to('/teacher/dashboard');
             } else {
-                // Invalid password
-                return redirect()->back()->with('error', 'Invalid password.');
+                return redirect()->to('/student/dashboard');
             }
         } else {
-            // User not found
-            return redirect()->back()->with('error', 'User not found.');
+            // Invalid password
+            return redirect()->back()->with('error', 'Invalid password.');
         }
+    } else {
+        // User not found
+        return redirect()->back()->with('error', 'User not found.');
     }
+}
+
 
     public function logout()
     {
@@ -63,6 +64,6 @@ class loginController extends BaseController
         $session->destroy();
 
         // Redirect to login page
-        return redirect()->to('/login');
+        return redirect()->to('/');
     }
 }

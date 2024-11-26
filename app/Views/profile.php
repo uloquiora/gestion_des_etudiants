@@ -2,11 +2,11 @@
 <html lang="en">
   <head>
     <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 5, SASS and PUG.js. It's fully customizable and modular.">
-    <!-- Twitter meta-->
+ 
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:site" content="@pratikborsadiya">
     <meta property="twitter:creator" content="@pratikborsadiya">
-    <!-- Open Graph Meta-->
+
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Vali Admin">
     <meta property="og:title" content="Vali - Free Bootstrap 5 admin theme">
@@ -16,13 +16,13 @@
     <title>Vali Admin - Free Bootstrap 5 Admin Template</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Main CSS-->
+  
     <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <!-- Font-icon css-->
+
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
   </head>
   <body class="app sidebar-mini">
     <!-- Navbar-->
@@ -41,7 +41,7 @@
         <li class="dropdown"><a class="app-nav__item" href="#" data-bs-toggle="dropdown" aria-label="Open Profile Menu"><i class="bi bi-person fs-4"></i></a>
           <ul class="dropdown-menu settings-menu dropdown-menu-right">
             <li><a class="dropdown-item" href="page-user.html"><i class="bi bi-gear me-2 fs-5"></i> Settings</a></li>
-            <li><a class="dropdown-item" href="<?= site_url('profile') ?>"><i class="bi bi-person me-2 fs-5"></i> profile</a></li>
+            <li><a class="dropdown-item" href="<?= site_url('profile') ?>"><i class="bi bi-person me-2 fs-5"></i> Profile</a></li>
             <li><a class="dropdown-item" href="<?= site_url('logout') ?>"><i class="bi bi-box-arrow-right me-2 fs-5"></i> Logout</a></li>
 
           </ul>
@@ -53,102 +53,73 @@
     <aside class="app-sidebar">
       </div>
       <ul class="app-menu">
-      <li><a class="app-menu__item " href="/admin/dashboard"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">Dashboard</span></a></li>
-        <li><a class="app-menu__item " href="/admin/add_user"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">add user</span></a></li>
-        <li><a class="app-menu__item " href="<?= site_url('upload_courses') ?>"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">upload courses</span></a></li>
+      <li><a class="app-menu__item " href="/student/dashboard"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">Dashboard</span></a></li>
+        <li><a class="app-menu__item" href="/student/courses"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">Courses</span></a></li>
+        <li><a class="app-menu__item " href="<?= site_url('profile') ?>"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">profile</span></a></li>
         
       </ul>
     </aside>
     <main class="app-content">
-      <div class="app-title">
-        <div>
-        <h1>Welcome, <?= esc($user['first_name'] . ' ' . $user['last_name']) ?> <i class="bi bi-speedometer">
+    
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg border-0">
+        <!-- Card Header with Black Background -->
+        <div class="card-header bg-dark text-white">
+          <h3 class="card-title mb-0">User Profile</h3>
+        </div>
+        <div class="card-body">
+          <!-- Username -->
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <p id="username" class="form-control-plaintext"><?= $user['username'] ?></p>
+          </div>
+          <!-- First Name -->
+          <div class="mb-3">
+            <label for="first_name" class="form-label">First Name</label>
+            <p id="first_name" class="form-control-plaintext"><?= $user['first_name'] ?></p>
+          </div>
+          <!-- Last Name -->
+          <div class="mb-3">
+            <label for="last_name" class="form-label">Last Name</label>
+            <p id="last_name" class="form-control-plaintext"><?= $user['last_name'] ?></p>
+          </div>
+          <!-- Role -->
+          <div class="mb-3">
+            <label for="role" class="form-label">Role</label>
+            <p id="role" class="form-control-plaintext"><?= $user['role'] ?></p>
+          </div>
+          <!-- Email -->
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <p id="email" class="form-control-plaintext"><?= $user['email'] ?></p>
+          </div>
+          <!-- Class -->
+          <div class="mb-3">
+            <label for="class" class="form-label">Class</label>
+            <p id="class" class="form-control-plaintext"><?= $user['class'] ?></p>
+          </div>
+          <!-- Actions -->
+          <div class="text-end">
+          <a href="/student/edit_profile/<?= $user['id'] ?>" class="btn btn-success">
+  <i class="bi bi-pencil"></i> Edit Profile
+</a>
+
+            <a href="/student/dashboard" class="btn btn-secondary ms-2">
+              <i class="bi bi-arrow-left-circle"></i> Back to Dashboard
+            </a>
+          </div>
         </div>
       </div>
-      <div class="row">
-    <div class="col-md-6 col-lg-3">
-        <div class="widget-small primary coloured-icon"><i class="icon bi bi-people fs-1"></i>
-            <div class="info">
-                <h4>Students</h4>
-                <p><b><?= $studentCount ?></b></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="widget-small info coloured-icon"><i class="icon bi bi-person fs-1"></i>
-            <div class="info">
-                <h4>Teachers</h4>
-                <p><b><?= $teacherCount ?></b></p>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container mt-4">
-  <!-- Header with Add User Button -->
-  <div class="row mb-3">
-    <div class="col-md-12 text-end">
-      <a href="/admin/add_user" class="btn btn-success">
-        <i class="bi bi-person-plus-fill"></i> Add New User
-      </a>
     </div>
   </div>
-
-  <!-- Styled Table -->
-  <table class="table table-hover table-bordered table-striped shadow-sm" id="userTable">
-    <thead class="table-dark text-center">
-      <tr>
-        <th>ID</th>
-        <th>Username</th>
-        <th>Role</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Class</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php foreach ($users as $user): ?>
-        <tr>
-          <td><?= $user['id'] ?></td>
-          <td><?= $user['username'] ?></td>
-          <td><?= $user['role'] ?></td>
-          <td><?= $user['first_name'] ?></td>
-          <td><?= $user['last_name'] ?></td>
-          <td><?= $user['email'] ?></td>
-          <td><?= $user['class'] ?></td>
-          <td class="text-center">
-            <a href="/admin/edit_user/<?= $user['id'] ?>" class="btn btn-sm btn-warning me-1">
-              <i class="bi bi-pencil-fill"></i> Edit
-            </a>
-            <a href="/admin/delete_user/<?= $user['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
-              <i class="bi bi-trash-fill"></i> Delete
-            </a>
-          </td>
-        </tr>
-      <?php endforeach; ?>
-    </tbody>
-  </table>
 </div>
-  
+
+    <!-- Essential javascripts for application to work-->
     <script src="/js/jquery-3.7.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/main.js"></script>
-    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-    <script>
-  $(document).ready(function () {
-
-    $('#userTable').DataTable({
-      paging: true,    
-      searching: true, 
-      ordering: true,  
-      columnDefs: [
-        { orderable: false, targets: 7 } 
-      ]
-    });
-  });
-</script>
-
+    <!-- Page specific javascripts-->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
     <script type="text/javascript">
       const salesData = {
@@ -214,7 +185,7 @@
       supportChart.setOption(supportRequests);
       new ResizeObserver(() => supportChart.resize()).observe(supportChartElement);
     </script>
-
+    <!-- Google analytics script-->
     <script type="text/javascript">
       if(document.location.hostname == 'pratikborsadiya.in') {
       	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

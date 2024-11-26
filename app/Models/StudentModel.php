@@ -6,5 +6,6 @@ class StudentModel extends Model
 {
     protected $table = 'students';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['first_name', 'last_name', 'email', 'class_id']; // Update with actual fields
+    protected $allowedFields = ['user_id', 'class', 'first_name', 'last_name'];
+
 }

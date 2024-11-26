@@ -23,6 +23,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
   </head>
   <body class="app sidebar-mini">
     <!-- Navbar-->
@@ -41,7 +43,7 @@
         <li class="dropdown"><a class="app-nav__item" href="#" data-bs-toggle="dropdown" aria-label="Open Profile Menu"><i class="bi bi-person fs-4"></i></a>
           <ul class="dropdown-menu settings-menu dropdown-menu-right">
             <li><a class="dropdown-item" href="page-user.html"><i class="bi bi-gear me-2 fs-5"></i> Settings</a></li>
-            <li><a class="dropdown-item" href="<?= site_url('profile') ?>"><i class="bi bi-person me-2 fs-5"></i> profile</a></li>
+            <li><a class="dropdown-item" href="<?= site_url('profile') ?>"><i class="bi bi-person me-2 fs-5"></i> upload_courses</a></li>
             <li><a class="dropdown-item" href="<?= site_url('logout') ?>"><i class="bi bi-box-arrow-right me-2 fs-5"></i> Logout</a></li>
 
           </ul>
@@ -53,84 +55,33 @@
     <aside class="app-sidebar">
       </div>
       <ul class="app-menu">
-      <li><a class="app-menu__item " href="/admin/dashboard"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">Dashboard</span></a></li>
+        <li><a class="app-menu__item " href="/admin/dashboard"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">Dashboard</span></a></li>
         <li><a class="app-menu__item " href="/admin/add_user"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">add user</span></a></li>
         <li><a class="app-menu__item " href="<?= site_url('upload_courses') ?>"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">upload courses</span></a></li>
         
       </ul>
     </aside>
     <main class="app-content">
-      <div class="app-title">
-        <div>
-        <h1>Welcome, <?= esc($user['first_name'] . ' ' . $user['last_name']) ?> <i class="bi bi-speedometer">
-        </div>
-      </div>
-      <div class="row">
-    <div class="col-md-6 col-lg-3">
-        <div class="widget-small primary coloured-icon"><i class="icon bi bi-people fs-1"></i>
-            <div class="info">
-                <h4>Students</h4>
-                <p><b><?= $studentCount ?></b></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="widget-small info coloured-icon"><i class="icon bi bi-person fs-1"></i>
-            <div class="info">
-                <h4>Teachers</h4>
-                <p><b><?= $teacherCount ?></b></p>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container mt-4">
-  <!-- Header with Add User Button -->
-  <div class="row mb-3">
-    <div class="col-md-12 text-end">
-      <a href="/admin/add_user" class="btn btn-success">
-        <i class="bi bi-person-plus-fill"></i> Add New User
-      </a>
-    </div>
-  </div>
+    <h2>Upload PDF</h2>
 
-  <!-- Styled Table -->
-  <table class="table table-hover table-bordered table-striped shadow-sm" id="userTable">
-    <thead class="table-dark text-center">
-      <tr>
-        <th>ID</th>
-        <th>Username</th>
-        <th>Role</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Class</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php foreach ($users as $user): ?>
-        <tr>
-          <td><?= $user['id'] ?></td>
-          <td><?= $user['username'] ?></td>
-          <td><?= $user['role'] ?></td>
-          <td><?= $user['first_name'] ?></td>
-          <td><?= $user['last_name'] ?></td>
-          <td><?= $user['email'] ?></td>
-          <td><?= $user['class'] ?></td>
-          <td class="text-center">
-            <a href="/admin/edit_user/<?= $user['id'] ?>" class="btn btn-sm btn-warning me-1">
-              <i class="bi bi-pencil-fill"></i> Edit
-            </a>
-            <a href="/admin/delete_user/<?= $user['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
-              <i class="bi bi-trash-fill"></i> Delete
-            </a>
-          </td>
-        </tr>
-      <?php endforeach; ?>
-    </tbody>
-  </table>
+<!-- Display errors (if any) -->
+<?php if(session()->getFlashdata('error')): ?>
+    <div class="alert alert-danger">
+        <?= session()->getFlashdata('error'); ?>
+    </div>
+<?php endif; ?>
+
+<form action="<?= site_url('/upload_courses'); ?>" method="post" enctype="multipart/form-data">
+    <?= csrf_field(); ?> <!-- CSRF protection -->
+    <div class="mb-3">
+        <label for="pdf" class="form-label">Choose PDF File</label>
+        <input type="file" class="form-control" id="pdf" name="pdf" accept=".pdf" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>
 </div>
-  
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/jquery-3.7.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/main.js"></script>

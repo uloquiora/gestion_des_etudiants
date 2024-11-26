@@ -23,7 +23,19 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
   </head>
+  <style>
+    /* Custom styling for table */
+    .table th, .table td {
+        vertical-align: middle;
+    }
+    
+    .table a {
+        text-decoration: none;
+    }
+</style>
   <body class="app sidebar-mini">
     <!-- Navbar-->
     <header class="app-header"><a class="app-header__logo" href="/admin/dashboard">Vali</a>
@@ -41,7 +53,7 @@
         <li class="dropdown"><a class="app-nav__item" href="#" data-bs-toggle="dropdown" aria-label="Open Profile Menu"><i class="bi bi-person fs-4"></i></a>
           <ul class="dropdown-menu settings-menu dropdown-menu-right">
             <li><a class="dropdown-item" href="page-user.html"><i class="bi bi-gear me-2 fs-5"></i> Settings</a></li>
-            <li><a class="dropdown-item" href="<?= site_url('profile') ?>"><i class="bi bi-person me-2 fs-5"></i> profile</a></li>
+            <li><a class="dropdown-item" href="<?= site_url('profile') ?>"><i class="bi bi-person me-2 fs-5"></i> Profile</a></li>
             <li><a class="dropdown-item" href="<?= site_url('logout') ?>"><i class="bi bi-box-arrow-right me-2 fs-5"></i> Logout</a></li>
 
           </ul>
@@ -53,85 +65,53 @@
     <aside class="app-sidebar">
       </div>
       <ul class="app-menu">
-      <li><a class="app-menu__item " href="/admin/dashboard"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">Dashboard</span></a></li>
-        <li><a class="app-menu__item " href="/admin/add_user"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">add user</span></a></li>
-        <li><a class="app-menu__item " href="<?= site_url('upload_courses') ?>"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">upload courses</span></a></li>
+      <li><a class="app-menu__item " href="/student/dashboard"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">Dashboard</span></a></li>
+        <li><a class="app-menu__item" href="/student/courses"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">Courses</span></a></li>
+        <li><a class="app-menu__item " href="<?= site_url('profile') ?>"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">profile</span></a></li>
         
       </ul>
     </aside>
     <main class="app-content">
-      <div class="app-title">
-        <div>
-        <h1>Welcome, <?= esc($user['first_name'] . ' ' . $user['last_name']) ?> <i class="bi bi-speedometer">
-        </div>
-      </div>
-      <div class="row">
-    <div class="col-md-6 col-lg-3">
-        <div class="widget-small primary coloured-icon"><i class="icon bi bi-people fs-1"></i>
-            <div class="info">
-                <h4>Students</h4>
-                <p><b><?= $studentCount ?></b></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-3">
-        <div class="widget-small info coloured-icon"><i class="icon bi bi-person fs-1"></i>
-            <div class="info">
-                <h4>Teachers</h4>
-                <p><b><?= $teacherCount ?></b></p>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container mt-4">
-  <!-- Header with Add User Button -->
-  <div class="row mb-3">
-    <div class="col-md-12 text-end">
-      <a href="/admin/add_user" class="btn btn-success">
-        <i class="bi bi-person-plus-fill"></i> Add New User
-      </a>
-    </div>
-  </div>
 
-  <!-- Styled Table -->
-  <table class="table table-hover table-bordered table-striped shadow-sm" id="userTable">
-    <thead class="table-dark text-center">
-      <tr>
-        <th>ID</th>
-        <th>Username</th>
-        <th>Role</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Class</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php foreach ($users as $user): ?>
-        <tr>
-          <td><?= $user['id'] ?></td>
-          <td><?= $user['username'] ?></td>
-          <td><?= $user['role'] ?></td>
-          <td><?= $user['first_name'] ?></td>
-          <td><?= $user['last_name'] ?></td>
-          <td><?= $user['email'] ?></td>
-          <td><?= $user['class'] ?></td>
-          <td class="text-center">
-            <a href="/admin/edit_user/<?= $user['id'] ?>" class="btn btn-sm btn-warning me-1">
-              <i class="bi bi-pencil-fill"></i> Edit
-            </a>
-            <a href="/admin/delete_user/<?= $user['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">
-              <i class="bi bi-trash-fill"></i> Delete
-            </a>
-          </td>
-        </tr>
-      <?php endforeach; ?>
-    </tbody>
-  </table>
+      <h1 class="text-center mb-4">Available Courses</h1>
+
+<div class="container mt-4">
+    <h3 class="text-primary mb-3">List of Courses:</h3>
+    
+    <!-- Table to display PDFs -->
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Course Name</th>
+                    <th>File Size</th>
+                    <th>Download Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($pdf_files as $pdf): ?>
+                    <tr>
+                        <td>
+                            <i class="bi bi-file-earmark-pdf me-2"></i>
+                            <?= htmlspecialchars($pdf) ?>
+                        </td>
+                        <td>
+                            <?= number_format(filesize(WRITEPATH . 'uploads/pdfs/' . $pdf) / 1024, 2) ?> KB
+                        </td>
+                        <td>
+                        <a href="<?= base_url('courses/download/' . $pdf) ?>" target="_blank" class="btn btn-primary btn-sm">
+    <i class="bi bi-download"></i> Download
+</a>
+
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
 </div>
-  
-    <script src="/js/jquery-3.7.0.min.js"></script>
+
+  <script src="/js/jquery-3.7.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/main.js"></script>
     <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
@@ -143,8 +123,8 @@
       searching: true, 
       ordering: true,  
       columnDefs: [
-        { orderable: false, targets: 7 } 
-      ]
+  { orderable: false, targets: 5 }  // Adjusted to match your table's columns
+]
     });
   });
 </script>

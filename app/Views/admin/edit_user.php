@@ -20,143 +20,107 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
   </head>
   <body class="app sidebar-mini">
-   
-    <header class="app-header"><a class="app-header__logo" href="index.html">Vali</a>
-<a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
-   
+    <!-- Navbar-->
+    <header class="app-header"><a class="app-header__logo" href="/admin/dashboard">Vali</a>
+      <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+      <!-- Navbar Right Menu-->
       <ul class="app-nav">
         <li class="app-search">
           <input class="app-search__input" type="search" placeholder="Search">
           <button class="app-search__button"><i class="bi bi-search"></i></button>
         </li>
-    
+        <!--Notification Menu-->
         <li class="dropdown"><a class="app-nav__item" href="#" data-bs-toggle="dropdown" aria-label="Show notifications"><i class="bi bi-bell fs-5"></i></a>
-          <ul class="app-notification dropdown-menu dropdown-menu-right">
-            <li class="app-notification__title">You have 4 new notifications.</li>
-            <div class="app-notification__content">
-              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><i class="bi bi-envelope fs-4 text-primary"></i></span>
-                  <div>
-                    <p class="app-notification__message">Lisa sent you a mail</p>
-                    <p class="app-notification__meta">2 min ago</p>
-                  </div></a></li>
-              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><i class="bi bi-exclamation-triangle fs-4 text-warning"></i></span>
-                  <div>
-                    <p class="app-notification__message">Mail server not working</p>
-                    <p class="app-notification__meta">5 min ago</p>
-                  </div></a></li>
-              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><i class="bi bi-cash fs-4 text-success"></i></span>
-                  <div>
-                    <p class="app-notification__message">Transaction complete</p>
-                    <p class="app-notification__meta">2 days ago</p>
-                  </div></a></li>
-              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><i class="bi bi-envelope fs-4 text-primary"></i></span>
-                  <div>
-                    <p class="app-notification__message">Lisa sent you a mail</p>
-                    <p class="app-notification__meta">2 min ago</p>
-                  </div></a></li>
-              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><i class="bi bi-exclamation-triangle fs-4 text-warning"></i></span>
-                  <div>
-                    <p class="app-notification__message">Mail server not working</p>
-                    <p class="app-notification__meta">5 min ago</p>
-                  </div></a></li>
-              <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><i class="bi bi-cash fs-4 text-success"></i></span>
-                  <div>
-                    <p class="app-notification__message">Transaction complete</p>
-                    <p class="app-notification__meta">2 days ago</p>
-                  </div></a></li>
-            </div>
-            <li class="app-notification__footer"><a href="#">See all notifications.</a></li>
-          </ul>
         </li>
         <!-- User Menu-->
         <li class="dropdown"><a class="app-nav__item" href="#" data-bs-toggle="dropdown" aria-label="Open Profile Menu"><i class="bi bi-person fs-4"></i></a>
           <ul class="dropdown-menu settings-menu dropdown-menu-right">
             <li><a class="dropdown-item" href="page-user.html"><i class="bi bi-gear me-2 fs-5"></i> Settings</a></li>
-            <li><a class="dropdown-item" href="page-user.html"><i class="bi bi-person me-2 fs-5"></i> Profile</a></li>
-            <li><a class="dropdown-item" href="page-login.html"><i class="bi bi-box-arrow-right me-2 fs-5"></i> Logout</a></li>
+            <li><a class="dropdown-item" href="<?= site_url('profile') ?>"><i class="bi bi-person me-2 fs-5"></i> Profile</a></li>
+            <li><a class="dropdown-item" href="<?= site_url('logout') ?>"><i class="bi bi-box-arrow-right me-2 fs-5"></i> Logout</a></li>
+
           </ul>
         </li>
       </ul>
-     
     </header>
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
-      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="https://randomuser.me/api/portraits/men/1.jpg" alt="User Image">
-        <div>
-          <p class="app-sidebar__user-name">John Doe</p>
-          <p class="app-sidebar__user-designation">Frontend Developer</p>
-        </div>
       </div>
       <ul class="app-menu">
-        <li><a class="app-menu__item active" href="dashboard.html"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">Dashboard</span></a></li>
-        <li><a class="app-menu__item active" href="exams.html"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">exams</span></a></li>
-        <li><a class="app-menu__item active" href="students.html"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">students</span></a></li>
-        <li><a class="app-menu__item active" href="absence.html"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">absence</span></a></li>
+      <li><a class="app-menu__item " href="/admin/dashboard"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">Dashboard</span></a></li>
+        <li><a class="app-menu__item " href="/admin/add_user"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">add user</span></a></li>
+        <li><a class="app-menu__item " href="<?= site_url('upload_courses') ?>"><i class="app-menu__icon bi bi-speedometer"></i><span class="app-menu__label">upload courses</span></a></li>
         
       </ul>
     </aside>
     <main class="app-content">
-    <div class="app-title">
-        <div>
-          <h1><i class="bi bi-speedometer"></i> Dashboard</h1>
-        
+    
+      <div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <!-- Card Header with Black Background -->
+        <div class="card-header bg-dark text-white">
+          <h3 class="card-title mb-0">Edit User</h3>
         </div>
-        <ul class="app-breadcrumb breadcrumb">
-          <li class="breadcrumb-item"><i class="bi bi-house-door fs-6"></i></li>
-          <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-        </ul>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="tile">
-            <h3 class="tile-title">Vertical Form</h3>
-            <div class="tile-body">
-              <form method="post" action="/admin/update_user/<?= $user['id'] ?>">
-                <div class="mb-3">
-                  <label class="form-label">username</label>
-                  <input class="form-control" type="text" name="username" value="<?= $user['username'] ?>" required>
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">password</label>
-                  <input class="form-control" type="password" name="password">
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">first name</label>
-                  <input class="form-control"type="text" name="first_name" value="<?= $user['first_name'] ?>" required>
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">last name</label>
-                  <input  class="form-control" type="text" name="last_name" value="<?= $user['last_name'] ?>" required>
-                </div>
-                <div class="mb-3">
-                  <label class="form-label">role</label>
-                  <input  class="form-control" type="text" name="role" value="<?= $user['role'] ?>" required>
-                    </label>
-                  </div>
-                  </div>
-                <div class="mb-3">
-                  <label class="form-label">email</label>
-                  <input class="form-control" type="email" name="email" value="<?= $user['email'] ?>" required>
-                </div> <div class="mb-3">
-                  <label class="form-label">class</label>
-                  <input class="form-control" type="text" name="class" value="<?= $user['class'] ?>">
-                </div> <div class="tile-footer">
-                <button type="submit" class="btn btn-success mt-3">register</button>
-                <a href="/admin/dashboard" class="btn btn-secondary mt-3 ms-2">Cancel</a>
+        <div class="card-body">
+          <form method="post" action="/admin/update_user/<?= $user['id'] ?>">
+            <!-- Username -->
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input id="username" class="form-control" type="text" name="username" value="<?= $user['username'] ?>" required>
             </div>
-          </div>
-                </div>
-               
-                </div>
-                
-                
-             
-              </form>
+            <!-- Password -->
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input id="password" class="form-control" type="password" name="password">
+            </div>
+            <!-- First Name -->
+            <div class="mb-3">
+              <label for="first_name" class="form-label">First Name</label>
+              <input id="first_name" class="form-control" type="text" name="first_name" value="<?= $user['first_name'] ?>" required>
+            </div>
+            <!-- Last Name -->
+            <div class="mb-3">
+              <label for="last_name" class="form-label">Last Name</label>
+              <input id="last_name" class="form-control" type="text" name="last_name" value="<?= $user['last_name'] ?>" required>
+            </div>
+            <!-- Role -->
+            <div class="mb-3">
+              <label for="role" class="form-label">Role</label>
+              <input id="role" class="form-control" type="text" name="role" value="<?= $user['role'] ?>" required>
+            </div>
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input id="email" class="form-control" type="email" name="email" value="<?= $user['email'] ?>" required>
+            </div>
+            <!-- Class -->
+            <div class="mb-3">
+              <label for="class" class="form-label">Class</label>
+              <input id="class" class="form-control" type="text" name="class" value="<?= $user['class'] ?>">
+            </div>
+            <!-- Actions -->
+            <div class="text-end">
+              <button type="submit" class="btn btn-success">
+                <i class="bi bi-check-circle"></i> Save Changes
+              </button>
+              <a href="/admin/dashboard" class="btn btn-secondary ms-2">
+                <i class="bi bi-x-circle"></i> Cancel
+              </a>
+            </div>
+          </form>
         </div>
-
+      </div>
+    </div>
+  </div>
+</div>
 
     <!-- Essential javascripts for application to work-->
     <script src="/js/jquery-3.7.0.min.js"></script>
